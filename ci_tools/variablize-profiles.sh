@@ -30,7 +30,7 @@ getGlobalVars | awk '{ print length($0) " " $0; }' | sort -r -n | cut -d ' ' -f 
 sed -i.bak '/REACT_APP_ENV/d' tmpHosts
 # mv tmpHosts.bak tmpHosts
 rm tmpHosts.bak
-./variablize.sh -p ../profiles -e tmpHosts -B
+./variablize.sh -p ../profiles -e tmpHosts "${1}"
 rm tmpHosts
 # echo "#### GLOBAL ENV VARS #####" >> "${pVersion}/env_vars"
 # cat tmpHosts >> "${pVersion}/env_vars"
