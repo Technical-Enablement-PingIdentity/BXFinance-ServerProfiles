@@ -9,12 +9,14 @@ case "${REF}" in
   master ) 
 
     REACT_APP_ENV_NAME=${Prod}
+    ACME_SERVER_ENV_NAME="Let's Encrypt"
     FQDN="demo.bxfinance.org"
     ## used for prefixing
     ENV=""
     ;;
   * )
     REACT_APP_ENV_NAME="$(echo "$REF" | awk ' { $0=toupper(substr($0,1,1))substr($0,2); print } ')"
+    ACME_SERVER_ENV_NAME="Let's Encrypt Staging Environment"
     FQDN="bxfinance-${REF}.ping-devops.com"
     ## used for prefixing
     ENV="-${REF}"
@@ -41,36 +43,36 @@ getGlobalVars() {
 # PING_IDENTITY_PASSWORD="2FederateM0re"
 # }
 
-# createGlobalVarsPostman() {
-#   # kubectl get cm "${RELEASE}-global-env-vars" -o=jsonpath='{.data}' -n "${K8S_NAMESPACE}" | jq -r '. | to_entries | .[] | .key + "=" + .value + ""'
-#   data=$(kubectl get cm "global-env-vars" -n "${K8S_NAMESPACE}" -o=jsonpath='{.data}')
-#   keys=$(echo "$data" | jq -r '. | to_entries | .[] | .key')
-#   varEntries=""
-#   for key in $keys ; do
-#     value=$(echo "${data}" | jq -r ".${key}" )
-#     varEntries="${varEntries} { \"key\": \"${key}\", \"value\": \"${value}\" },"
-#   done
-#   varEntries=${varEntries%?}
-#   cat << EOF | kubectl apply -f -
-#   apiVersion: v1
-#   data:
-#     global_postman_vars.json: |
-#       {
-#         "id": "eae83fc1-25de-4def-9062-7dc2ba993710",
-#         "name": "myping",
-#         "values": [
-#           ${varEntries}
-#         ],
-#         "_postman_variable_scope": "global"
-#       }
-#   kind: ConfigMap
-#   metadata:
-#     annotations:
-#       use-subpath: "true"
-#     name: ${RELEASE}-global-env-vars-postman
-#     namespace: ${K8S_NAMESPACE}
-# EOF
-# }
+createGlobalVarsPostman() {
+  kubectl get cm "global-env-vars" -o=jsonpath='{.data}' -n "${K8S_NAMESPACE}" | jq -r '. | to_entries | .[] | .key + "=" + .value + ""'
+  data=$(kubectl get cm "global-env-vars" -n "${K8S_NAMESPACE}" -o=jsonpath='{.data}')
+  keys=$(echo "$data" | jq -r '. | to_entries | .[] | .key')
+  varEntries=""
+  for key in $keys ; do
+    value=$(echo "${data}" | jq -r ".${key}" )
+    varEntries="${varEntries} { \"key\": \"${key}\", \"value\": \"${value}\" },"
+  done
+  varEntries=${varEntries%?}
+  cat << EOF | kubectl apply -f -
+  apiVersion: v1
+  data:
+    global_postman_vars.json: |
+      {
+        "id": "eae83fc1-25de-4def-9062-7dc2ba993710",
+        "name": "myping",
+        "values": [
+          ${varEntries}
+        ],
+        "_postman_variable_scope": "global"
+      }
+  kind: ConfigMap
+  metadata:
+    annotations:
+      use-subpath: "true"
+    name: global-env-vars-postman
+    namespace: ${K8S_NAMESPACE}
+EOF
+}
 
 # getPfClientAppInfo(){
 #   # get bearer token (login). 
