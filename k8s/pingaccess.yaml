@@ -72,6 +72,24 @@ spec:
           requests:
             cpu: "1"
             memory: 2.5Gi
+        readinessProbe:
+          exec:
+            command:
+            - /opt/liveness.sh
+          failureThreshold: 4
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 5
+        livenessProbe:
+          exec:
+            command:
+            - /opt/liveness.sh
+          failureThreshold: 4
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 5
         volumeMounts:
         - name: pingaccess-license
           mountPath: "/opt/in/instance/conf/pingaccess.lic"
