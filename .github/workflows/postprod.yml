@@ -5,7 +5,7 @@ name: PostProd
 on:
   workflow_run:
     workflows: ["Deploy Feature Env"]
-    branches: [main,master]
+    # branches: [main,master]
     types: 
       - completed
 

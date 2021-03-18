@@ -41,7 +41,7 @@ metadata:
 spec:
   ports:
   - name: ldaps
-    port: 1636
+    port: 636
     targetPort: 636
   - name: ssl
     port: 1443
@@ -55,24 +55,24 @@ spec:
   selector:
     role: pingdirectory
 
----
+# ---
 
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    role: pingdirectory
-  name: pingdirectory-cluster
-  annotations:
-    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
-spec:
-  publishNotReadyAddresses: true
-  clusterIP: None
-  ports:
-  - name: ldaps
-    port: 636
-  selector:
-    role: pingdirectory
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     role: pingdirectory
+#   name: pingdirectory-cluster
+#   annotations:
+#     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+# spec:
+#   publishNotReadyAddresses: true
+#   clusterIP: None
+#   ports:
+#   - name: ldaps
+#     port: 636
+#   selector:
+#     role: pingdirectory
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -85,7 +85,7 @@ spec:
   selector:
     matchLabels:
       role: pingdirectory
-  serviceName: pingdirectory-cluster
+  serviceName: pingdirectory
   template:
     metadata:
       labels:
