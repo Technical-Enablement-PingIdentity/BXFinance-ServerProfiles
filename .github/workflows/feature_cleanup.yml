@@ -7,7 +7,7 @@ on:
       - main
       - master
 
-name: Delete Env
+name: DeleteEnv
 
 jobs:
   deploy:

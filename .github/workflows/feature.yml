@@ -11,7 +11,7 @@ on:
     #   - development
 
 
-name: Deploy Feature Env
+name: DeployEnv
 
 jobs:
   deploy:

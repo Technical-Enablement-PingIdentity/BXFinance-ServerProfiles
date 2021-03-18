@@ -1,17 +1,17 @@
 ## this workflow is used for dev environments to add new product configurations and promote up
 
-name: PostProd
+name: PostDeploy
 
 on:
   workflow_run:
-    workflows: ["Deploy Feature Env"]
+    workflows: ["DeployEnv"]
     # branches: [main,master]
     types: 
       - completed
 
 jobs:
   deploy:
-    name: Follow Prod Deploy
+    name: Follow Deploy
     runs-on: ubuntu-latest
     if: "!contains(github.event.commits[0].message, '[skip ci]')"
 
