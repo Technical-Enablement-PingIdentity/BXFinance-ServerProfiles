@@ -75,6 +75,10 @@ jobs:
         PF_LIC_BASE64: ${{ secrets.PF_LIC_BASE64 }}
         PD_LIC_BASE64: ${{ secrets.PD_LIC_BASE64 }}
         PDG_LIC_BASE64: ${{ secrets.PDG_LIC_BASE64 }}
+    - name: LetsEncrypt Flow
+      run: |
+        export REF=$(echo $GITHUB_REF | sed -e "s#refs/heads/##g")
+        sh ci_tools/run_postman.sh k8s/postman.yaml test-pa adab3b2375d6a394de8c 100
     # - name: Integration Test
     #   run: ci_tools/run_postman.sh iac/integrationtest.yaml
     # - name: Environment Info
