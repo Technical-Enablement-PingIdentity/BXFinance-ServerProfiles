@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urn:AdapterConfiguration isInheritTargetApplicationInfo="false" applicationName="BXFinance Advisor and Marketing Portals" applicationIcon="${PF_BASE_URL}/app/images/logo-white.png" isInheritExtendedContractAttributes="false" name="AWA AMA SP RefID" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
+<urn:AdapterConfiguration isInheritTargetApplicationInfo="false" applicationName="BXFinance Advisor and Marketing Portals" applicationIcon="https://${PD_DELEGATOR_PUBLIC_HOSTNAME}/app/images/logo-white.png" isInheritExtendedContractAttributes="false" name="AWA AMA SP RefID" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
     <urn:Fields/>
     <urn:AdvancedFields/>
     <urn:Tables/>

@@ -19,7 +19,7 @@
         <urn:Field name="Enable Username Recovery">true</urn:Field>
         <urn:Field name="Login Template">html.form.login.template.html</urn:Field>
         <urn:Field name="Logout Path">/logmeout</urn:Field>
-        <urn:Field name="Logout Redirect">${PF_BASE_URL}/app/</urn:Field>
+        <urn:Field name="Logout Redirect">https://${PD_DELEGATOR_PUBLIC_HOSTNAME}/app/</urn:Field>
         <urn:Field name="Logout Template">idp.logout.success.page.template.html</urn:Field>
         <urn:Field name="Change Password Template">html.form.change.password.template.html</urn:Field>
         <urn:Field name="Change Password Message Template">html.form.message.template.html</urn:Field>
@@ -55,7 +55,7 @@
     <urn:AdvancedFields>
         <urn:Field name="Login Template">html.form.login.template.html</urn:Field>
         <urn:Field name="Logout Path">/logmeout</urn:Field>
-        <urn:Field name="Logout Redirect">${PF_BASE_URL}/app/</urn:Field>
+        <urn:Field name="Logout Redirect">https://${PD_DELEGATOR_PUBLIC_HOSTNAME}/app/</urn:Field>
         <urn:Field name="Logout Template">idp.logout.success.page.template.html</urn:Field>
         <urn:Field name="Change Password Template">html.form.change.password.template.html</urn:Field>
         <urn:Field name="Change Password Message Template">html.form.message.template.html</urn:Field>

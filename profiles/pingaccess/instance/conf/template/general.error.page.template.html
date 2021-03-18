@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+#*
+The server renders this HTML page in an end-user's browser when
+a general error occurs.
+
+Velocity variables (identified by the $ character) are generated
+at runtime by the server.
+
+Change text or formatting as needed. Modifying Velocity statements
+is not recommended as it may interfere with expected server behavior.
+
+The following variables are available for use in this template:
+    $title          - a title for the content suitable for inclusion in the HTML <title> tag
+    $header         - a more specific title suitable for inclusion in body content
+    $info           - a detailed message for the error (commented out in template by default)
+    $exchangeId     - a unique identifier for the request/response pair processed by PingAccess
+    $Encode         - an org.owasp.encoder.Encode class suitable for html encoding strings
+    $locale         - a java.util.Locale representing the resolved localization 
+    $localizedMessageResolver - a com.pingidentity.pa.sdk.localization.LocalizedMessageResolver
+    $applicationId   - a unique identifier for the application requested if applicable
+    $applicationName - the name of the application requested if applicable
+    $featureMode    - the feature mode based on the PingAccess license
+    $reservedApplicationContextRoot - the context root of the reserved application used to serve static assets
+
+Custom localized messages defined in pa-messages.properties can be added to this template by using the      
+$localizedMessageResolver.  For example, if a custom property named 'my.custom.message' was added to pa-messages.properties
+and any other locale specific properties files, the localized value can be added to this template with the following:
+
+    $Encode.forHtml($localizedMessageResolver.resolveMessage($locale, "my.custom.message"))
+
+*#
+
+<!-- template name: general.error.page.template.html -->
+
+#set( $messageKeyPrefix = "general.error.page.template." )
+#set( $lang = $locale.toLanguageTag() )
+
+#if(${title})
+  #set($title = ${title})
+#else
+  #set($title = $localizedMessageResolver.resolveMessage($locale, "pa.response.status.server.error"))
+#end
+<html lang="#if($lang != "und")$Encode.forHtmlAttribute($lang)#end" dir="$Encode.forHtmlAttribute($orientation)">
+<head>
+    <title>#if($title)$Encode.forHtml($title)#end</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+     <!-- adding for BXFinance styling -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+     <link rel="stylesheet" href="$Encode.forHtmlAttribute($reservedApplicationContextRoot)/assets/css/styles.css">
+     <link rel="stylesheet" href="$Encode.forHtmlAttribute($reservedApplicationContextRoot)/assets/css/login.css">
+     <!-- END OF -->
+
+
+    <link rel="stylesheet" type="text/css" href="$Encode.forHtmlAttribute($reservedApplicationContextRoot)/assets/css/main.css"/>
+</head>
+
+<body style=" background: url('../assets/images/background.jpg') center center no-repeat var(--secondary);  ">
+    
+<div class="card card-register" style="margin:auto; width:50%; font-family:Rubik">
+    
+    <!-- 
+    if there is a logo present in the 'company-logo' container,
+    then 'has-logo' class should be added to 'ping-header' container.
+    -->
+    <div class="card-header">
+        <span class="company-logo"><!-- client company logo here -->
+            
+        
+        </span>
+        <img src="$Encode.forHtmlAttribute($reservedApplicationContextRoot)/assets/images/logo.svg" class="logo" />
+        
+        
+        
+    </div><!-- .ping-header -->
+    
+    <div class="card-body">
+
+        <div class="section-title">
+            #if(${header})
+              $Encode.forHtml($header)
+            #elseif($title)
+              $Encode.forHtml($title)
+            #end
+        </div>
+
+        <div class="ping-messages ping-nopad">
+            <div class="ping-error">
+                $Encode.forHtml($localizedMessageResolver.resolveMessage($locale, "pa.error.contact.system.administrator"))
+            </div>
+            ## Uncomment below to display a more specific error message
+            #*
+            <div>
+                #if(${info})$Encode.forHtml($info)#end
+            </div>
+            *#
+        </div>
+        <div><br /><a href="/app/banking">Go Back</a></div>
+
+    </div> <!-- .ping-body-container -->
+
+    <div class="ping-footer-container">
+
+        <div class="ping-footer">
+            #if("AAD" == $featureMode)
+            <div class="ping-support">$Encode.forHtml($localizedMessageResolver.resolveMessage($locale, "pa.info.global.contact.support"))</div>
+            #end
+        </div> <!-- .ping-footer -->
+    </div> <!-- .ping-footer-container -->
+    
+</div> <!-- .ping-container -->
+
+</body>
+</html>

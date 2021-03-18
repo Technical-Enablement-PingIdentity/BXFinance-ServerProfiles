@@ -1,50 +1,48 @@
+# Accept all the legal things
 PING_IDENTITY_ACCEPT_EULA=YES
+# This should match the branch we are testing in.
+# RSAs - delete this if you are cloning/forking BXF.
+# Non-master branches should ONLY be used by Technical Enablement. They are considered unstable.
 SERVER_PROFILE_BRANCH=development
-
+#### PING FEDERATE ####
 # PF Logging Level
 PF_LOG_LEVEL=DEBUG
-#
 # BaseURL of the PingFed service - Used in the PD Email Notification
 PF_BASE_URL=https://demo.bxfinance.xyz
-#
-# PD User BASE DN
-# Used when PD starts up to create the User Store
-USER_BASE_DN=dc=bxfinance.org
-#
 # PF Admin Password
-# Note - this should match `pfAdminPwd` in postman_vars.json
+# Note - this should match `pfAdminPwd` in postman_vars.json if 
+# you are starting with your own C360 server profile. Otherwise, this was handled already.
 PF_USER_PWD=2FederateM0re
-#
-# Adding DelegatedAdmin
-# 
-#
+#### PING DIRECTORY ####
+# PD User BASE DN. Used when PD starts up to create the User Store
+USER_BASE_DN=dc=bxfinance.org
+# Needed for ping_data per the docs.
+MAX_HEAP_SIZE=1g
+#### PING ACCESS ####
+# Used in the target site for the React app. If running this on a localhost (laptop), this needs to be host.docker.internal.
+BXFINANCEAPP_HOST=10.101.21.230
+# Port used by React in production builds, used by PA in target site.
+BXFINANCEAPP_PORT=5000
+#### DG PAP ####
+# Necessary PAP variable for accessing the Symphonic UI. 
+PING_EXTERNAL_BASE_URL=10.101.21.230:9443
+################################################################
+# DELEGATED ADMIN USE CASES WERE NEVER IMPLEMENTED.            #
+# Original base configs were left in place in case the         #
+# field needed it for a custom demo or POC. It will be         #
+# added to BXF OOB use cases if there is enough field demand.  #
+################################################################
 # PF details for the Delegated Admin OIDC app
 # PF_HOST && PF_PORT are used to construct the allowed `Issuer` of the id_token
 # Delegator will prepend "https://", you only need the port if if it's not `:443`
-PF_HOST=demo.bxfinance.xyz
-#PF_CLIENT_ID=Delegator
-#
 # PD details for Delegator API calls
-#PD_HOST=demo.bxfinance.xyz
-#PD_PORT=443
-#
 # Base Hostname of the PingFed service being used for Delegated Admin
-#PF_BASE_HOST=demo.bxfinance.xyz
-# NEEDED FOR PING_DATA 
-MAX_HEAP_SIZE=768m
-#
-# Delegator App (PD DelAdmin)
-#  
+# Delegator App (PD DelAdmin)  
 #PD_DELEGATOR_PUBLIC_HOSTNAME=demo.bxfinance.xyz
-#PD_DELEGATOR_PRIVATE_PORT_HTTP=6080
-#PD_DELEGATOR_PRIVATE_PORT_HTTPS=6443
-PF_ENGINE_PUBLIC_HOSTNAME=demo.bxfinance.xyz
+PD_DELEGATOR_HTTP_PORT=6080
+PD_DELEGATOR_HTTPS_PORT=6443
+#PF_ENGINE_PUBLIC_HOSTNAME=demo.bxfinance.xyz ***
 #PF_ENGINE_PUBLIC_PORT=
-#PF_DELEGATOR_CLIENTID=Delegator
-PD_ENGINE_PUBLIC_HOSTNAME=demo.bxfinance.xyz
+PF_DELEGATOR_CLIENTID=Delegator
+#PD_ENGINE_PUBLIC_HOSTNAME=demo.bxfinance.xyz ***
 PD_ENGINE_PUBLIC_PORT=443
-# bxfinance dev host
-BXFINANCEAPP_HOST=10.101.21.230
-BXFINANCEAPP_PORT=5000
-# necessary pap variable
-PING_EXTERNAL_BASE_URL=10.101.21.230:9443

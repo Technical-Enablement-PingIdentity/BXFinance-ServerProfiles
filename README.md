@@ -22,7 +22,7 @@
 * Access [PingFederate] (https://pingfederate:9999/pingfederate/app)
   - administrator / 2FederateM0re
 * Access [PingAccess] (https://pingaccess:9000/login)
-  - administrator / 2FederateM0re
+  - administrator / 2Access
 * Access [PingDirectory] (http://pingdataconsole:8080/console/login)
   - pingdirectory:636
   - administrator / 2FederateM0re
@@ -35,8 +35,7 @@
   - admin / password123
 
 ## Pre-requisites: External Services
-* You need a P14E tenant with a PID SDK app.
-  - Update the PingFed PID SDK adapter accordingly with your properties file from P14E.
+* You need a P14E tenant for partner/workforce use cases.
 * In that P14E tenant, you need 2 test users for the partner (AnyWealth Advisor) and workforce (Marketing) federation into BXFinance for consent enforcement.
 * The partner's AnyWealth Advisor app connection to PingFed needs the following attributes,
   - subject

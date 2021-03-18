@@ -4,7 +4,7 @@
     <c:item name="cookie-length">25</c:item>
     <c:item name="cookie-secure-flag">true</c:item>
     <c:item name="cookie-httponly-flag">true</c:item>
-    <c:item name="cookie-max-age">94${PD_DELEGATOR_HTTP_PORT}00</c:item>
+    <c:item name="cookie-max-age">94${PD_DELEGATOR_PRIVATE_PORT_HTTP}00</c:item>
     <c:item name="cookie-domain"></c:item>
     <c:item name="cookie-format">jwt</c:item>
 </c:config>

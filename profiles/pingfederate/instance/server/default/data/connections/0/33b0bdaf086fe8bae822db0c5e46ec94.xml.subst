@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<md:EntityDescriptor entityID="${PF_BASE_URL}" urn:name="BXFinance Banking" ID="Dummy-SAML" urn:baseUrl="${PF_BASE_URL}" urn:LogLevel="STANDARD" urn:isActive="true" urn:applicationName="BXFinance Banking" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:urn="urn:sourceid.org:saml2:metadata-extension:v2">
+<md:EntityDescriptor entityID="https://${PD_DELEGATOR_PUBLIC_HOSTNAME}" urn:name="BXFinance Banking" ID="Dummy-SAML" urn:baseUrl="https://${PD_DELEGATOR_PUBLIC_HOSTNAME}" urn:LogLevel="STANDARD" urn:isActive="true" urn:applicationName="BXFinance Banking" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:urn="urn:sourceid.org:saml2:metadata-extension:v2">
     <md:Extensions>
         <urn:EntityExtension PFVersion="10.0.3.0" LicenseGroup="">
             <urn:DigitialSignatureAliases SigningKeyAlias="signing-cert" includeX509inXmlSig="false" includeRawKeyInXmlSig="false" SigningAlgorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256">
