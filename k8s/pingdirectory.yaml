@@ -41,7 +41,7 @@ metadata:
 spec:
   ports:
   - name: ldaps
-    port: 636
+    port: 1636
     targetPort: 636
   - name: ssl
     port: 1443
