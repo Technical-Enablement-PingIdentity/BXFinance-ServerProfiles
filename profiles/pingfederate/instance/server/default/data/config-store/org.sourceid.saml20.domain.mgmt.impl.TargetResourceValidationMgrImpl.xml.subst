@@ -3,9 +3,9 @@
     <con:list name="whitelist">
         <con:ListItem>${PD_DELEGATOR_PUBLIC_HOSTNAME}|/app/advisor|false|true|true|false|false|false</con:ListItem>
         <con:ListItem>${PD_DELEGATOR_PUBLIC_HOSTNAME}|/app/any-marketing|false|true|true|false|false|false</con:ListItem>
-        <con:ListItem>${PD_DELEGATOR_PUBLIC_HOSTNAME}|/idp/startSSO.ping?PartnerSpId=https://${PD_DELEGATOR_PUBLIC_HOSTNAME}|false|true|true|false|false|false</con:ListItem>
         <con:ListItem>${PD_DELEGATOR_PUBLIC_HOSTNAME}|/app/credit-card|false|true|true|false|false|false</con:ListItem>
         <con:ListItem>${PD_DELEGATOR_PUBLIC_HOSTNAME}|/app/banking|false|true|true|false|false|false</con:ListItem>
+        <con:ListItem>${PD_DELEGATOR_PUBLIC_HOSTNAME}|/app/|false|true|true|false|false|false</con:ListItem>
     </con:list>
     <con:item name="enable-validation">true</con:item>
     <con:item name="enable-validation-target-resource-slo">true</con:item>
