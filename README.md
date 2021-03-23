@@ -1,3 +1,4 @@
+![DeployEnv](https://github.com/Technical-Enablement-PingIdentity/BXFinance-ServerProfiles/.github/workflows/feature.yml/badge.svg)
 # BXFinance
 ## This server profile is the basis of the BXFinance Demo - Currently the `docker-compose` version. K8s version planned for a later release.
 
