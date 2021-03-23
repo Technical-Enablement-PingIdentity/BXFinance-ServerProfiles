@@ -72,7 +72,7 @@ is not recommended as it may interfere with expected server behavior.
                         <div class="text-block--overflow-wrap">
                             <div class="stack" data-id="stack">
                                 <div><button class="button file-input--button button--primary brand-primary-bg" data-id="button" type="button" onclick="retry()">$languagePackMessages.getMessage($messageKeyPrefix, "retry.button.title")</button></div>
-                                <a tabindex="0" data-id="content-link" target="_self" class="anchor" onclick="cancelAuthentication()">$languagePackMessages.getMessage($messageKeyPrefix, "cancel.button.title")</a>
+                                <a tabindex="0" data-id="content-link" target="_self" class="anchor" onclick="self.close()">$languagePackMessages.getMessage($messageKeyPrefix, "cancel.button.title")</a>
                             </div>
                         </div>
                     </div>
