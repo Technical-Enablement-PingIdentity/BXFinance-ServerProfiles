@@ -80,7 +80,7 @@ jobs:
         export REF=$(echo $GITHUB_REF | sed -e "s#refs/heads/##g")
         CTIME=$(kubectl get pod -l role=pingaccess '-o=jsonpath={.items[0].metadata.creationTimestamp}')
         PA_AGE="$(($(date '+%s') - $(date -d $CTIME '+%s')))"
-        if test $PA_AGE -lt 300; then 
+        if test $PA_AGE -lt 360; then 
           sh ci_tools/run_postman.sh k8s/postman.yaml letsencrypt-pa adab3b2375d6a394de8c 100
         fi
     # - name: Integration Test
