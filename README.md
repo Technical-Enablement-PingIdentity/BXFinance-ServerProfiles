@@ -1,4 +1,7 @@
-![DeployEnv](https://github.com/Technical-Enablement-PingIdentity/BXFinance-ServerProfiles/actions/workflows/feature.yml/badge.svg)
+![DeployEnv](https://github.com/Technical-Enablement-PingIdentity/BXFinance-ServerProfiles/actions/workflows/feature.yml/badge.svg?branch=master)
+![DeployEnv](https://github.com/Technical-Enablement-PingIdentity/BXFinance-ServerProfiles/actions/workflows/feature.yml/badge.svg?branch=stagind)
+![DeployEnv](https://github.com/Technical-Enablement-PingIdentity/BXFinance-ServerProfiles/actions/workflows/feature.yml/badge.svg?branch=qa)
+![DeployEnv](https://github.com/Technical-Enablement-PingIdentity/BXFinance-ServerProfiles/actions/workflows/feature.yml/badge.svg?branch=integration)
 # BXFinance
 ## This server profile is the basis of the BXFinance Demo - Currently the `docker-compose` version. K8s version planned for a later release.
 
