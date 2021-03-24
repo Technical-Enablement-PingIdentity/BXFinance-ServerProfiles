@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingfederate
+spec:
+  template:
+    spec:
+      containers:
+      - name: pingfederate
+        resources:
+          limits:
+            cpu: 4
+            memory: "2Gi"
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingaccess
+spec:
+  template:
+    spec:
+      containers:
+      - name: pingaccess
+        resources:
+          limits:
+            cpu: 4
+            memory: "2Gi"
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingdataconsole
+spec:
+  template:
+    spec:
+      containers:
+      - name: pingaccess
+        resources:
+          limits:
+            cpu: 4
+            memory: "2Gi"
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingdatagovernancepap
+spec:
+  template:
+    spec:
+      containers:
+      - name: pingdatagovernancepap
+        resources:
+          limits:
+            cpu: 4
+            memory: "2Gi"
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingdatagovernance
+spec:
+  template:
+    spec:
+      containers:
+      - name: pingdatagovernance
+        resources:
+          limits:
+            cpu: 4
+            memory: "2Gi"
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bxfinanceapp
+spec:
+  template:
+    spec:
+      containers:
+      - name: bxfinanceapp
+        resources:
+          limits:
+            cpu: 2
+            memory: "2Gi"
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: pingdirectory
+spec:
+  template:
+    spec:
+      containers:
+      - name: pingdirectory
+        resources:
+          limits:
+            cpu: 4
+            memory: "2Gi"
+          requests:
+            cpu: "100m"
+            memory: "100Mi"

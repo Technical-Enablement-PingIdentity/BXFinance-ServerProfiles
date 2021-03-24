@@ -15,7 +15,7 @@ generatorOptions:
 
 images:
 - name: gcr.io/ping-gte/bxfinanceapp
-  newName: gcr.io/ping-gte/bxfinanceapp-dev
+  newName: gcr.io/ping-gte/bxfinanceapp${REACT_IMAGE_SUFFIX}
 
 namespace: ${K8S_NAMESPACE}
 
@@ -38,3 +38,6 @@ patches:
     - op: replace
       path: /spec/template/spec/containers/0/tty
       value: true
+
+patchesStrategicMerge:
+  - resource-limits.yaml

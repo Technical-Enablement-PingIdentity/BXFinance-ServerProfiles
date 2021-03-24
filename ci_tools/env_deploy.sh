@@ -22,15 +22,19 @@ export REF
 
 k8sFolder="k8s${ENV:+-feature}"
 kustomize build "${k8sFolder}" | envsubst
-kustomize build "${k8sFolder}" | envsubst | kubectl apply -n ${K8S_NAMESPACE} -f -
+if test "${1}" != "--dry-run" ; then
+  kustomize build "${k8sFolder}" | envsubst | kubectl apply -n ${K8S_NAMESPACE} -f -
+  echo "waiting for all containers to be healthy"
+  _timeout=100
+  _attempt=0
+  while test ${_attempt} -lt ${_timeout} ; do
+    sleep 6
+    if test $(kubectl get pods -o go-template='{{range $index, $element := .items}}{{range .status.containerStatuses}}{{if not .ready}}{{$element.metadata.name}}{{"\n"}}{{end}}{{end}}{{end}}' | wc -l ) = 0 ; then
+        break;
+    fi
+    _attempt=$((_attempt+1))
+  done
+else
+  echo "dry-run, not deploying"
+fi
 
-echo "waiting for all containers to be healthy"
-_timeout=100
-_attempt=0
-while test ${_attempt} -lt ${_timeout} ; do
-  sleep 6
-  if test $(kubectl get pods -o go-template='{{range $index, $element := .items}}{{range .status.containerStatuses}}{{if not .ready}}{{$element.metadata.name}}{{"\n"}}{{end}}{{end}}{{end}}' | wc -l ) = 0 ; then
-      break;
-  fi
-  _attempt=$((_attempt+1))
-done
