@@ -37,4 +37,3 @@ if test "${1}" != "--dry-run" ; then
 else
   echo "dry-run, not deploying"
 fi
-
