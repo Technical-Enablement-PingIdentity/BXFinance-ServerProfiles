@@ -42,16 +42,16 @@ spec:
   ports:
   - name: ldaps
     port: 1636
-    targetPort: 636
+    targetPort: 1636
   - name: ssl
     port: 1443
-    targetPort: 443
+    targetPort: 1443
   - name: consent
     port: 2443
     targetPort: 2443
   - name: ldap
-    port: 389
-    targetPort: 389
+    port: 1389
+    targetPort: 1389
   selector:
     role: pingdirectory
 
@@ -70,7 +70,7 @@ spec:
   clusterIP: None
   ports:
   - name: ldaps
-    port: 636
+    port: 1636
   selector:
     role: pingdirectory
 ---
@@ -92,6 +92,10 @@ spec:
         role: pingdirectory
       name: pingdirectory
     spec:
+      securityContext:
+        runAsUser: 9031
+        runAsGroup: 9999
+        fsGroup: 2000
       containers:
       - envFrom:
         - configMapRef:
@@ -104,7 +108,7 @@ spec:
             optional: true
         - configMapRef:
             name: pingdirectory-environment-variables
-        image: pingidentity/pingdirectory:2012-8.2.0.0
+        image: pingidentity/pingdirectory:8.2.0.3-edge
         env:
         - name: PD_PROFILE_SHA
           value: ${pingdirectorySha}
@@ -125,10 +129,10 @@ spec:
           periodSeconds: 30
         name: pingdirectory
         ports:
-        - containerPort: 636
-        - containerPort: 443
+        - containerPort: 1636
+        - containerPort: 1443
         - containerPort: 2443
-        - containerPort: 389
+        - containerPort: 1389
         readinessProbe:
           exec:
             command:

@@ -56,7 +56,7 @@ spec:
             optional: true
         - configMapRef:
             name: pingdatagovernance-environment-variables
-        image: pingidentity/pingdatagovernance:2012-8.2.0.0
+        image: pingidentity/pingdatagovernance:8.2.0.3-edge
         name: pingdatagovernance
         env:
         - name: PDG_PROFILE_SHA

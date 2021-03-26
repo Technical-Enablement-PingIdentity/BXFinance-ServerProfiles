@@ -51,7 +51,7 @@ spec:
             optional: true
         - configMapRef:
             name: pingfederate-environment-variables
-        image: pingidentity/pingfederate:2012-10.2.0
+        image: pingidentity/pingfederate:10.2.2-edge
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 1

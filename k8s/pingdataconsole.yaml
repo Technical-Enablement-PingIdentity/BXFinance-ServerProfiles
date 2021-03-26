@@ -29,7 +29,7 @@ spec:
       name: pingdataconsole
     spec:
       containers:
-      - image: pingidentity/pingdataconsole:2012-8.2.0.0
+      - image: pingidentity/pingdataconsole:8.2.0.3-edge
         name: pingdataconsole
         ports:
         - containerPort: 8443

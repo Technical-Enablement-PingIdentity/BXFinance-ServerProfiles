@@ -52,7 +52,7 @@ spec:
             optional: true
         - configMapRef:
             name: pingdatagovernancepap-environment-variables
-        image: pingidentity/pingdatagovernancepap:2012-8.2.0.0
+        image: pingidentity/pingdatagovernancepap:8.2.0.3-edge
         name: pingdatagovernancepap
         env:
         - name: PDGP_PROFILE_SHA

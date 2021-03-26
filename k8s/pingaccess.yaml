@@ -56,7 +56,7 @@ spec:
             optional: true
         - configMapRef:
             name: pingaccess-environment-variables
-        image: pingidentity/pingaccess:2012-6.2.0
+        image: pingidentity/pingaccess:6.2.1-edge
         name: pingaccess
         env:
         - name: PA_PROFILE_SHA
