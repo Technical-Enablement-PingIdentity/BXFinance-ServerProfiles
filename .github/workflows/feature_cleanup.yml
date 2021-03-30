@@ -52,4 +52,4 @@ jobs:
     - name: Cleanup Feature K8S Env
       run: |
         export REF=$(echo "${{ github.event.ref }}" | sed -e "s#refs/heads/##g")
-        sh ci_tools/prune_env.sh
+        sh ci_tools/env_prune.sh
