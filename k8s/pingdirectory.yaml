@@ -44,13 +44,13 @@ spec:
     port: 1636
     targetPort: 1636
   - name: ssl
-    port: 1443
+    port: 443
     targetPort: 1443
   - name: consent
     port: 2443
     targetPort: 2443
   - name: ldap
-    port: 1389
+    port: 389
     targetPort: 1389
   selector:
     role: pingdirectory
