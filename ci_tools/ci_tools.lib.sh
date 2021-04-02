@@ -54,24 +54,24 @@ createGlobalVarsPostman() {
     varEntries="${varEntries} { \"key\": \"${key}\", \"value\": \"${value}\" },"
   done
   varEntries=${varEntries%?}
-  cat <<EOF | kubectl apply -f -
-  apiVersion: v1
-  data:
-    global_postman_vars.json: |
-      {
-        "id": "eae83fc1-25de-4def-9062-7dc2ba993710",
-        "name": "myping",
-        "values": [
-          ${varEntries}
-        ],
-        "_postman_variable_scope": "global"
-      }
-  kind: ConfigMap
-  metadata:
-    annotations:
-      use-subpath: "true"
-    name: global-env-vars-postman
-    namespace: ${K8S_NAMESPACE}
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+data:
+  global_postman_vars.json: |
+    {
+      "id": "eae83fc1-25de-4def-9062-7dc2ba993710",
+      "name": "myping",
+      "values": [
+        ${varEntries}
+      ],
+      "_postman_variable_scope": "global"
+    }
+kind: ConfigMap
+metadata:
+  annotations:
+    use-subpath: "true"
+  name: global-env-vars-postman
+  namespace: ${K8S_NAMESPACE}
 EOF
 }
 
