@@ -15,7 +15,7 @@ case "${REF}" in
     ENV=""
     ;;
   * )
-    if test "${REF}" != "qa" || test "${REF}" != "staging" ; then
+    if test "${REF}" != "qa" && test "${REF}" != "staging" ; then
       REACT_IMAGE_SUFFIX="-dev"
     fi
     REACT_APP_ENV_NAME="$(echo "$REF" | awk ' { $0=toupper(substr($0,1,1))substr($0,2); print } ')"
