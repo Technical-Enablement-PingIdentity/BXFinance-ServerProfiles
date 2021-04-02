@@ -14,7 +14,7 @@ spec:
       containers:
       - image: postman/newman:alpine
         ### UPDATE COLLECTION ON NEXT LINE
-        args: ["run", "https://www.getpostman.com/collections/${COLLECTION_ID}","--environment","/usr/src/app/global_postman_vars.json","--insecure", "--ignore-redirects"]
+        args: ["run", "https://www.getpostman.com/collections/${COLLECTION_ID}","--environment","/usr/src/app/global_postman_vars.json","--insecure", "--ignore-redirects", "--verbose"]
         imagePullPolicy: "IfNotPresent"
         name: ${JOB_NAME}
         volumeMounts:

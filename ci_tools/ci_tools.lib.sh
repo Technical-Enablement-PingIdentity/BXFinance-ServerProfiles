@@ -19,7 +19,7 @@ case "${REF}" in
       REACT_IMAGE_SUFFIX="-dev"
     fi
     REACT_APP_ENV_NAME="$(echo "$REF" | awk ' { $0=toupper(substr($0,1,1))substr($0,2); print } ')"
-    ACME_SERVER_ENV_NAME="Let's Encrypt Staging Environment"
+    ACME_SERVER_ENV_NAME="Let's Encrypt"
     FQDN="bxfinance-${REF}.ping-devops.com"
     ENV="-${REF}"
     PING_IDENTITY_DEVOPS_DNS_ZONE="bxfinance${ENV}.ping-devops.com"
