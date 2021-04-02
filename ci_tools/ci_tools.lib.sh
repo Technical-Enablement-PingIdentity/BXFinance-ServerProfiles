@@ -54,7 +54,7 @@ createGlobalVarsPostman() {
     varEntries="${varEntries} { \"key\": \"${key}\", \"value\": \"${value}\" },"
   done
   varEntries=${varEntries%?}
-  cat << EOF | kubectl apply -f -
+  cat <<EOF | kubectl apply -f -
   apiVersion: v1
   data:
     global_postman_vars.json: |

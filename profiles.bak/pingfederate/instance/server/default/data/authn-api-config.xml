@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<authnApiConfig>
-    <apiApplications>
-        <application description="" id="zpKCPcAi883ccAFRt1aMEQeuu" name="BXFinance" url="https://bxfinance-libra-ms.ping-devops.com/app/"/>
-        <application description="" id="DefaultAuthNAPIApp" name="Default AuthN API" url="https://bxfinance-libra-ms.ping-devops.com/pf-ws/authn/explorer"/>
-    </apiApplications>
-    <apiSettings apiEnabled="true" enableApiDescriptions="true"/>
-</authnApiConfig>
