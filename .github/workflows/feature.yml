@@ -88,6 +88,7 @@ jobs:
     - name: Environment Info
       env:
         SLACK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      if: "!contains(github.event.commits[0].message, '[skip notif]')"
       run: |
         echo "Your environment is ready, check Slack!"
         set -a
