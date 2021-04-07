@@ -85,16 +85,23 @@ jobs:
         fi
     # - name: Integration Test
     #   run: ci_tools/run_postman.sh iac/integrationtest.yaml
-    # - name: Environment Info
-    #   run: echo "Your environment is ready, check Slack!"
-        # set -a
-        # source ci_tools/ci_tools.lib.sh
-        # kubectl get ing -l app.kubernetes.io/instance=${RELEASE} -o=custom-columns="NAME:.metadata.name,HOST:.spec.rules[*].host"
-
-    # - name: pull-request-action
-    #   uses: vsoch/pull-request-action@1.0.12
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #     PULL_REQUEST_BRANCH: "qa"
-    #     PASS_IF_EXISTS: "yes"
-    #     PASS_ON_ERROR: "yes"
+    - name: Environment Info
+      env:
+        SLACK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        echo "Your environment is ready, check Slack!"
+        set -a
+        source ci_tools/ci_tools.lib.sh
+        tmpHosts="$(kubectl get ing pingaccess '-o=jsonpath={.spec.rules[*].host}')"
+        tmpHosts="$tmpHosts $(kubectl get ing ${REF}-admin-consoles '-o=jsonpath={.spec.rules[*].host}')"
+        for i in $tmpHosts ; do INGRESS_HOSTS="$INGRESS_HOSTS $i \\n"; done
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"BXF - :rocket: Check out new hosts:\n'"$INGRESS_HOSTS"'"}' "${SLACK_URL}"
+    - name: Report Failure
+      env:
+        SLACK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      run: |
+        echo "Deployment Failed, check slack."
+        set -a
+        source ci_tools/ci_tools.lib.sh
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"BXF - sad trombone :dockerfail: deployment failed see https://github.com/Technical-Enablement-PingIdentity/BXRetail-ServerProfiles/actions/runs/'"$GITHUB_RUN_ID"'"}' "${SLACK_URL}"
+      if: ${{ failure() }}
